@@ -18,17 +18,18 @@ The training script expects a specific folder structure within a local data/ dir
 ME369P-Final-Project/
 ├── Model_Training_cnn.py
 └── data/
-    ├── train/                    # 90% Training Split
-    │   ├── AI_Cat/               # Category 1: Generated/AI
-    │   ├── Plushie_Cat/          # Category 2: Toys/Plushies
-    │   └── Real_Cat/             # Category 3: Live animals
-    └── val/                      # 10% Validation Split
+    ├── train/                    # ~ 90% Training Split
+    │   ├── AI_Cat/               
+    │   ├── Plushie_Cat/          
+    │   └── Real_Cat/             
+    └── val/                      # ~ 10% Validation Split
         ├── AI_Cat/
         ├── Plushie_Cat/
         └── Real_Cat/
 ```
 
 ## Running the CNN model
-
-1. To run the CNN model, the following packages are requiredd in order to run
-   pip install torch torchvision numpy matplotlib
+To run the CNN model, run the following command to install the necessary packages to run the model: 
+```bash
+pip install torch torchvision numpy matplotlib
+```
