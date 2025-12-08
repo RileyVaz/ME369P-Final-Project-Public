@@ -14,7 +14,7 @@ The training script expects a specific folder structure within a local data/ dir
 
 ('This is an example of the general folder structure of the project, to use each model trainer')
 
-'''bash
+```bash
 ME369P-Final-Project/
 ├── Model_Training_cnn.py
 └── data/
@@ -26,7 +26,7 @@ ME369P-Final-Project/
         ├── AI_Cat/
         ├── Plushie_Cat/
         └── Real_Cat/
-'''
+```
 
 ## Running the CNN model
 
