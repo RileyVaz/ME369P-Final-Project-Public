@@ -27,6 +27,16 @@ ME369P-Final-Project/
         ├── Plushie_Cat/
         └── Real_Cat/
 ```
+## Running the Web Scraper
+For privacy reasons and compliance with security practices, the full web scraper source code is not hosted directly on this GitHub repository.\n
+
+GitHub’s policies on personally identifiable information (PII) and automated extraction tools can sometimes restrict the hosting of specific scraping configurations that might inadvertently expose sensitive endpoints or identifiers. Consequently, the scraper and its associated logic are available in the external data folder linked below.
+
+1. Head to the data folder link to access the webscraper, locate "Web_scraper.zip"; download the file and extract the folder
+2. Place the Web_scaper folder on your Desktop (all teh necessary files are alread pre-installed so only need to place folder)
+3. Running the file on your IDE, locate the "configuration section"
+4. In the configuration section there should be a baseline path in the file, for every "####" replace with your computers username.
+5. Run the script (Assuming yu are using VS code)
 
 ## Running the CNN model (Model_Training_cnn.py)
 ~ The model was trained using VScode, should work in Spyder
