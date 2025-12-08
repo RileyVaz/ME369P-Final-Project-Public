@@ -28,8 +28,10 @@ ME369P-Final-Project/
         └── Real_Cat/
 ```
 
-## Running the CNN model
-To run the CNN model, run the following command to install the necessary packages to run the model: 
+## Running the CNN model (Model_Training_cnn.py)
+~ The model was trained using VScode, should work in Spyder
+To run the CNN model, run the following command in your terminal to install the necessary packages to run the model: 
 ```bash
 pip install torch torchvision numpy matplotlib
 ```
+
