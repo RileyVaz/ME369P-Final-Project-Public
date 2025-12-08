@@ -8,3 +8,8 @@ https://drive.google.com/file/d/1LmHvKBR9CANGtaBeEO-KHJPdY2GyRZa_/view?usp=shari
 https://drive.google.com/drive/folders/1-UtQ0X5nTJHMcUOAaTisVJr9Kmh7YTsy?usp=sharing
 ## quick guide 
 The robot.py file takes in an input of a model that the user desires to use, and an image that the user wishes to evaluate.
+
+## Running the CNN model
+
+1. To run the CNN model, the following packages are requiredd in order to run
+   pip install torch torchvision numpy matplotlib
