@@ -9,6 +9,23 @@ https://drive.google.com/drive/folders/1-UtQ0X5nTJHMcUOAaTisVJr9Kmh7YTsy?usp=sha
 ## quick guide 
 The robot.py file takes in an input of a model that the user desires to use, and an image that the user wishes to evaluate.
 
+## Data Directory Structure
+The training script expects a specific folder structure within a local data/ directory. The dataset is typically split into 90% training data and 10% validation data. Ensure each subfolder is named exactly as the categories used in the model.
+
+('This is an example of the general folder structure of the project, to use each model trainer')
+
+ME369P-Final-Project/
+├── Model_Trainer.py
+└── data/
+    ├── train/                    # ~ 90% Training Split
+    │   ├── AI_Cat/
+    │   ├── Plushie_Cat/
+    │   └── Real_Cat/
+    └── val/                      # ~ 10% Validation Split
+        ├── AI_Cat/
+        ├── Plushie_Cat/
+        └── Real_Cat/
+
 ## Running the CNN model
 
 1. To run the CNN model, the following packages are requiredd in order to run
