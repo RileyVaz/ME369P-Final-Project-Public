@@ -15,13 +15,13 @@ The training script expects a specific folder structure within a local data/ dir
 ('This is an example of the general folder structure of the project, to use each model trainer')
 
 ME369P-Final-Project/
-├── Model_Trainer.py
+├── Model_Training_cnn.py
 └── data/
-    ├── train/                    # ~ 90% Training Split
-    │   ├── AI_Cat/
-    │   ├── Plushie_Cat/
-    │   └── Real_Cat/
-    └── val/                      # ~ 10% Validation Split
+    ├── train/                    # 90% Training Split
+    │   ├── AI_Cat/               # Category 1: Generated/AI
+    │   ├── Plushie_Cat/          # Category 2: Toys/Plushies
+    │   └── Real_Cat/             # Category 3: Live animals
+    └── val/                      # 10% Validation Split
         ├── AI_Cat/
         ├── Plushie_Cat/
         └── Real_Cat/
