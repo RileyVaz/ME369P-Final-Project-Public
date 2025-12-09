@@ -10,7 +10,7 @@ https://drive.google.com/drive/folders/1-UtQ0X5nTJHMcUOAaTisVJr9Kmh7YTsy?usp=sha
 The robot.py file takes in an input of a model that the user desires to use, and an image that the user wishes to evaluate.
 
 ## Data Directory Structure
-The training script expects a specific folder structure within a local data/ directory. The dataset is typically split into 90% training data and 10% validation data. Ensure each subfolder is named exactly as the categories used in the model.
+The training script expects a specific folder structure within a local data/ directory. The dataset is typically split into 90% training data and 10% validation data. Ensure each subfolder is named exactly as the categories used in the model (Exception for ResNet Model).
 
 ('This is an example of the general folder structure of the project, to use each model trainer')
 
@@ -70,14 +70,14 @@ python Model_Training_cnn.py
 ```bash
 pip install torch torchvision matplotlib numpy pillow
 ```
-3. Setup your directory as follows to ensure proper 
+3. Setup your directory as follows to ensure proper (DIFFERS FROM OTHER TWO MODELS)
 ```text
 Recommended Structure:
 project/
 │── data/
-│   ├── ai_cat/   
-│   ├── plush_cat/
-│   └── real_cat/
+│   ├── Ai_Cat/   
+│   ├── Plushie_Cat/
+│   └── Real_Cat/
 ├── ResNet_Model.pth    # Suggested name for trained model
 ```
 4. Run the script:
