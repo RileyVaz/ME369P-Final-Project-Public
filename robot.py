@@ -1,5 +1,5 @@
 import torch
-from torchvision import transforms
+from torchvision import transforms,models
 from PIL import Image
 import timm
 import pybullet as p
@@ -8,7 +8,7 @@ import time
 import math
 
 
-def image(model_path, img_path):
+def image_swain(model_path, img_path):
     device = torch.device("cuda")
     model = timm.create_model("swin_tiny_patch4_window7_224",pretrained=True,num_classes=3)
     model.load_state_dict(torch.load(model_path, map_location=device))
@@ -25,9 +25,87 @@ def image(model_path, img_path):
 
     return idx.item(), conf.item()
 
+def image_resnet(model_path, img_path):
+    device = torch.device("cuda")
+    model = models.resnet18(weights=None)
+    model.fc = torch.nn.Linear(model.fc.in_features, 3)
+    model.load_state_dict(torch.load(model_path, map_location=device))
+    model.to(device)
+    model.eval()
+
+    transform = transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(), transforms.Normalize([0.485, 0.456, 0.406],[0.229, 0.224, 0.225])])
+    cat = Image.open(img_path).convert("RGB")
+    tensor = transform(cat).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        output = model(tensor)
+        probs = torch.softmax(output, dim=1)
+        conf, idx = torch.max(probs, dim=1)
+
+    return idx.item(), conf.item()
+
+class SimpleCatCNN(torch.nn.Module):
+    """
+    A simple, custom Convolutional Neural Network (CNN) architecture.
+    Inputs are 3-channel (RGB) images, 224x224 pixels.
+    """
+    def __init__(self, num_classes):
+        super(SimpleCatCNN, self).__init__()
+        
+        # --- Feature Extractor Layers ---
+        self.features = torch.nn.Sequential(
+            # Conv Layer 1: Input (3x224x224) -> Output (16x112x112)
+            torch.nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1),
+            torch.nn.ReLU(),
+            torch.nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # Conv Layer 2: Input (16x112x112) -> Output (32x56x56)
+            torch.nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1),
+            torch.nn.ReLU(),
+            torch.nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # Conv Layer 3: Input (32x56x56) -> Output (64x28x28)
+            torch.nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1),
+            torch.nn.ReLU(),
+            torch.nn.MaxPool2d(kernel_size=2, stride=2),
+            
+        )
+        
+        # --- Classifier Layers ---
+        # Calculates the size of the flattened feature vector: 64 channels * 28 * 28 = 50176
+        self.classifier = torch.nn.Sequential(
+            torch.nn.Dropout(0.5), # Regularization
+            torch.nn.Linear(64 * 28 * 28, 512),
+            torch.nn.ReLU(),
+            torch.nn.Linear(512, num_classes)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = torch.flatten(x, 1) 
+        x = self.classifier(x)
+        return x
+
+
+def image_cnn(model_path, img_path):
+    device = torch.device("cuda")
+    model = SimpleCatCNN(3).to(device)
+    model.load_state_dict(torch.load(model_path, map_location=device))
+    model.eval()
+    
+    transform = transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])
+    cat = Image.open(img_path).convert("RGB")
+    tensor = transform(cat).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        output = model(tensor)
+        probs = torch.softmax(output, dim=1)
+        conf, idx = torch.max(probs, 1)
+
+    return idx.item(), conf.item()
+
 
 def move(robot_id, target):
-    
 
     ori = p.getQuaternionFromEuler([math.pi, 0, 0])
     target_joints = p.calculateInverseKinematics(robot_id, 6, target, ori)
@@ -80,9 +158,15 @@ def zoneD(zones):
         p.addUserDebugText(text=name, textPosition=[x, y, 0.05], textColorRGB=[0, 0, 0], textSize=1.2, lifeTime=0)
 
 
-def main(image_path, model_path):
-    
-    idx, confidence = image(model_path,image_path)
+def main(image_path, model_path,model):
+    if "swain" in model:
+        idx, confidence = image_swain(model_path,image_path)
+    elif "resnet" in model:
+        idx, confidence =  image_resnet(model_path,image_path)
+    else: 
+        idx, confidence =  image_cnn(model_path,image_path)
+
+
     CATagories = ["Ai",  "Plushie","real"]
     cat = CATagories[idx]
 
@@ -115,15 +199,17 @@ def main(image_path, model_path):
 
 
 if __name__ == "__main__":
+    model = input("Please enter type of model(swain, resnet, or cnn): ") 
     modelpath = input("Please enter path to model: ") 
     while True: 
         imagepath = input("Please enter path to image: ")
-        main(imagepath, modelpath)
+        main(imagepath, modelpath,model)
         if input("test more images(yes or no)? ") in "no":
             
             break
         
         elif input("test different model(yes or no)? ") in  "yes":
+            model = input("Please enter type of model(swain, resnet, or cnn): ")
             modelpath = input("Please enter path to model: ") 
           
 
