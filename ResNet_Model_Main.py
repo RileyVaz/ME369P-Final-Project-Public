@@ -114,7 +114,7 @@ def predict_engine():
         return
 
     # Hardcoded for prediction speed (so we don't have to load the dataset)
-    class_names = ['ai_cat', 'plush_cat', 'real_cat']
+    class_names = ['Ai_Cat', 'Plushie_Cat', 'Real_Cat']
     
     model = build_model(len(class_names))
     try:
@@ -149,4 +149,5 @@ if __name__ == "__main__":
     print("1. Train | 2. Predict")
     choice = input("Choice: ")
     if choice == '1': train_engine()
+
     elif choice == '2': predict_engine()
