@@ -28,7 +28,7 @@ ME369P-Final-Project/
         └── Real_Cat/
 ```
 ## Running the Web Scraper
-For privacy reasons and compliance with security practices, the full web scraper source code is not hosted directly on this GitHub repository.\n
+For privacy reasons and compliance with security practices, the full web scraper source code is not hosted directly on this GitHub repository.
 
 GitHub’s policies on personally identifiable information (PII) and automated extraction tools can sometimes restrict the hosting of specific scraping configurations that might inadvertently expose sensitive endpoints or identifiers. Consequently, the scraper and its associated logic are available in the external data folder linked below.
 
@@ -36,12 +36,27 @@ GitHub’s policies on personally identifiable information (PII) and automated e
 2. Place the Web_scaper folder on your Desktop (all teh necessary files are alread pre-installed so only need to place folder)
 3. Running the file on your IDE, locate the "configuration section"
 4. In the configuration section there should be a baseline path in the file, for every "####" replace with your computers username.
-5. Run the script (Assuming yu are using VS code)
+6. Move on the "search_config" section, there should be 2 main categories available "Plushie_Cat" and "AI_Cat"
+7. In between the [], insert your query/search for the search you are interested image search you are interested to scrape. "You can make multiple searches within the same session"
+8. Run the script
 
 ## Running the CNN model (Model_Training_cnn.py)
-~ The model was trained using VScode, should work in Spyder
-1. To run the CNN model, run the following command in your terminal to install the necessary packages to run the model: 
+Ensure you are using "python 3.10.11" for this model, as some packages do not suport python beyond this version:
+~ The model was trained using VScode
+1. Create a virtual enviorment using the following command:
 ```bash
-pip install torch torchvision numpy matplotlib
+python -m venv cat_classifier_venv
 ```
-
+2. To activate you current enviorment use the following commands dedpending if you are using git Bash or powershell (VScode_term/terminal)
+```bash
+PowerShell: .\cat_classifier_venv\Scripts\Activate.ps1
+Bash: source cat_classifier_venv/bin/activate
+```
+4. To run the CNN model, run the following command in your terminal to install the necessary packages to run the model: 
+```bash
+pip install torch torchvision numpy matplotlib pillow
+```
+5. Run the model within the enviorment:
+```bash
+python Model_Training_cnn.py
+```
