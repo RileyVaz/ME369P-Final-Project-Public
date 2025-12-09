@@ -85,7 +85,16 @@ project/
 python ResNet_Model_Main.py
 ```
 7. To train new model enter 1
-8. Once model is trained you re-run script again and select 2 in order to test images
+```bash
+1
+```
+9. Once model is trained you re-run script again and select 2 in order to test images
+```bash
+2
+```
+```bash
+Enter the path to your image (e.g., test.jpg): testCat.JPG
+```
 
 ## Running the Swin  model (swinModel.py)
 works on Python 3.13
