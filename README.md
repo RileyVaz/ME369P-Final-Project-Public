@@ -28,6 +28,8 @@ ME369P-Final-Project/
         └── Real_Cat/
 ```
 ## Running the Web Scraper
+link to web scraper https://drive.google.com/file/d/1TiMitOJcaWLfoqK-pI29evQQuKas9FmE/view?usp=sharing
+
 For privacy reasons and compliance with security practices, the full web scraper source code is not hosted directly on this GitHub repository.
 
 GitHub’s policies on personally identifiable information (PII) and automated extraction tools can sometimes restrict the hosting of specific scraping configurations that might inadvertently expose sensitive endpoints or identifiers. Consequently, the scraper and its associated logic are available in the external data folder linked below.
