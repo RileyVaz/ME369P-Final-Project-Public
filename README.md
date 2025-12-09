@@ -43,7 +43,7 @@ GitHub’s policies on personally identifiable information (PII) and automated e
 ## Running the CNN model (Model_Training_cnn.py)
 Ensure you are using "python 3.10.11" for this model, as some packages do not suport python beyond this version:
 ~ The model was trained using VScode
-1. Create a virtual enviorment using the following command:
+1. Download the "Model_Training_cnn.py" file, load an IDE with the file loaded; create a virtual enviorment using the following command:
 ```bash
 python -m venv cat_classifier_venv
 ```
