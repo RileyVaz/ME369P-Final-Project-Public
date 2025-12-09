@@ -62,3 +62,7 @@ pip install torch torchvision numpy matplotlib pillow
 ```bash
 python Model_Training_cnn.py
 ```
+
+## Running the Swin  model (swinModel.py)
+1. Download the "swinModel.py" file.
+2. verify packages are installed 
