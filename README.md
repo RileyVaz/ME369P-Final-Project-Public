@@ -63,6 +63,30 @@ pip install torch torchvision numpy matplotlib pillow
 python Model_Training_cnn.py
 ```
 
+## Running the ResNet model (ResNet_Model_Main.py)
+
+1. Download the "ResNet_Model_Main.py" file
+2. Run the following line to install necessary dependencies in your terminal or command prompt
+```bash
+pip install torch torchvision matplotlib numpy pillow
+```
+3. Setup your directory as follows to ensure proper 
+```text
+Recommended Structure:
+project/
+│── data/
+│   ├── ai_cat/   
+│   ├── plush_cat/
+│   └── real_cat/
+├── ResNet_Model.pth    # Suggested name for trained model
+```
+4. Run the script:
+```bash
+python ResNet_Model_Main.py
+```
+7. To train new model enter 1
+8. Once model is trained you re-run script again and select 2 in order to test images
+
 ## Running the Swin  model (swinModel.py)
 works on Python 3.13
 1. Download the "swinModel.py" file.
@@ -70,7 +94,7 @@ works on Python 3.13
 3. Run Python SwinModel.py from the command line, as on certain systems, multi-processors will break if run from IDE.
 4. If it fails, change subpro = 1 on line 70
    
-6. ## Running the robot  arm  (robot.py)
+## Running the robot  arm  (robot.py)
 works on Python 3.13
 1. Download the "robot.py" file.
 2. Verify packages are installed or install by running 3. pip install torch torchvision timm tqdm
