@@ -64,5 +64,11 @@ python Model_Training_cnn.py
 ```
 
 ## Running the Swin  model (swinModel.py)
+works on Python 3.13
 1. Download the "swinModel.py" file.
-2. verify packages are installed 
+2. Verify packages are installed or install by running 3. pip install torch torchvision timm tqdm
+3. Run Python SwinModel.py from the command line, as on certain systems, multi-processors will break if run from IDE.
+4. If it fails, change subpro = 1 on line 70
+
+
+
